@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandshake, faEnvelope, faSearch, faLifeRing } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faHandshake, faEnvelope, faSearch, faLifeRing } from '@fortawesome/free-solid-svg-icons';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { PrimaryButton, DefaultButton, Spinner, SpinnerSize } from 'office-ui-fabric-react';
+// import { PrimaryButton, DefaultButton, Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { PrimaryButton, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import { HttpVerb, sendHttpRequest, ContentType } from '../../../utils/httpRequest';
 import 'fontawesome-4.7/css/font-awesome.css';
 import api from '../../api';
@@ -223,26 +224,26 @@ class Login extends React.Component<{}, LoginState> {
                 </div>
 
                 <div className="bounded-tile">
-                    <div className="connect-your-database">
+                    {/* <div className="connect-your-database">
                         Connect Your
                         <img src="assets/odoo-full.png" />
                         Database
-                    </div>
+                    </div> */}
                     <TextField
                         className="form-line"
                         label="Database URL"
-                        placeholder="E.g. : https://mycompany.odoo.com"
+                        placeholder="E.g. : https://mycompany.com"
                         value={this.state.baseURL}
                         onChange={this.onServerChange}
                         errorMessage={errorMessage ? ' ' : null}
                     />
                     {errorMessage}
                     {this._getLoggingButton()}
-                    <h3 className="horizontal-line">
+                    {/* <h3 className="horizontal-line">
                         <span>OR</span>
-                    </h3>
-                    <DefaultButton className="full-width odoo-clear-button" text="Sign up" onClick={this.signup} />
-                    <div className="login-info">
+                    </h3> */}
+                    {/* <DefaultButton className="full-width odoo-clear-button" text="Sign up" onClick={this.signup} /> */}
+                    {/* <div className="login-info">
                         <div className="login-info-icon">
                             <FontAwesomeIcon icon={faEnvelope} size="2x" className="fa-fw" />
                         </div>
@@ -271,7 +272,7 @@ class Login extends React.Component<{}, LoginState> {
                             <FontAwesomeIcon icon={faSearch} size="2x" className="fa-fw" />
                         </div>
                         <div>Search and store insights on your contacts.</div>
-                    </div>
+                    </div> */}
                 </div>
             </>
         );

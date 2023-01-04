@@ -117,68 +117,68 @@ class CompanySection extends React.Component<CompanySectionProps, CompanySection
             });
     };
 
-    private enrichAndUpdate = () => {
-        if (!this.props.partner.email) {
-            let enrichmentInfo = new EnrichmentInfo(
-                EnrichmentInfoType.EnrichContactWithNoEmail,
-                _t('This company has no email address and it could not be enriched.'),
-            );
-            this.context.showTopBarMessage(enrichmentInfo);
-            return;
-        }
+    // private enrichAndUpdate = () => {
+    //     if (!this.props.partner.email) {
+    //         let enrichmentInfo = new EnrichmentInfo(
+    //             EnrichmentInfoType.EnrichContactWithNoEmail,
+    //             _t('This company has no email address and it could not be enriched.'),
+    //         );
+    //         this.context.showTopBarMessage(enrichmentInfo);
+    //         return;
+    //     }
 
-        this.setState({ isLoading: true });
+    //     this.setState({ isLoading: true });
 
-        const enrichRequest = sendHttpRequest(
-            HttpVerb.POST,
-            api.baseURL + api.enrichAndUpdate,
-            ContentType.Json,
-            this.context.getConnectionToken(),
-            {
-                partner_id: this.props.partner.company.id,
-            },
-            true,
-        );
+    //     const enrichRequest = sendHttpRequest(
+    //         HttpVerb.POST,
+    //         api.baseURL + api.enrichAndUpdate,
+    //         ContentType.Json,
+    //         this.context.getConnectionToken(),
+    //         {
+    //             partner_id: this.props.partner.company.id,
+    //         },
+    //         true,
+    //     );
 
-        this.context.addRequestCanceller(enrichRequest.cancel);
+    //     this.context.addRequestCanceller(enrichRequest.cancel);
 
-        enrichRequest.promise
-            .then((response) => {
-                const enrichResponse = JSON.parse(response);
+    //     enrichRequest.promise
+    //         .then((response) => {
+    //             const enrichResponse = JSON.parse(response);
 
-                let enrichmentInfo = null;
+    //             let enrichmentInfo = null;
 
-                if (enrichResponse.result['enrichment_info']) {
-                    enrichmentInfo = new EnrichmentInfo(
-                        enrichResponse.result['enrichment_info'].type,
-                        enrichResponse.result['enrichment_info'].info,
-                    );
-                    this.context.showTopBarMessage(enrichmentInfo);
-                    if (enrichmentInfo.type == EnrichmentInfoType.InsufficientCredit) {
-                        this.setState({ isLoading: false, hideEnrichmentButton: true });
-                        return;
-                    }
-                } else if (enrichResponse.result.error && enrichResponse.result.error.length) {
-                    this.context.showTopBarMessage(
-                        new EnrichmentInfo(EnrichmentInfoType.OdooCustomError, enrichResponse.result.error),
-                    );
-                    this.setState({ isLoading: false, hideEnrichmentButton: true });
-                    return;
-                }
-                const partner = this.props.partner;
-                const company = Company.fromJSON(enrichResponse.result.company, enrichmentInfo);
-                this.setState({ company: company, isLoading: false, isCollapsed: false });
-                //update partner information
-                partner.company = company;
-                partner.image = company.image;
-                partner.phone = company.phone;
-                this.props.onPartnerInfoChanged(partner);
-            })
-            .catch((error) => {
-                this.setState({ isCollapsed: false, isLoading: false, hideEnrichmentButton: true });
-                this.context.showHttpErrorMessage(error);
-            });
-    };
+    //             if (enrichResponse.result['enrichment_info']) {
+    //                 enrichmentInfo = new EnrichmentInfo(
+    //                     enrichResponse.result['enrichment_info'].type,
+    //                     enrichResponse.result['enrichment_info'].info,
+    //                 );
+    //                 this.context.showTopBarMessage(enrichmentInfo);
+    //                 if (enrichmentInfo.type == EnrichmentInfoType.InsufficientCredit) {
+    //                     this.setState({ isLoading: false, hideEnrichmentButton: true });
+    //                     return;
+    //                 }
+    //             } else if (enrichResponse.result.error && enrichResponse.result.error.length) {
+    //                 this.context.showTopBarMessage(
+    //                     new EnrichmentInfo(EnrichmentInfoType.OdooCustomError, enrichResponse.result.error),
+    //                 );
+    //                 this.setState({ isLoading: false, hideEnrichmentButton: true });
+    //                 return;
+    //             }
+    //             const partner = this.props.partner;
+    //             const company = Company.fromJSON(enrichResponse.result.company, enrichmentInfo);
+    //             this.setState({ company: company, isLoading: false, isCollapsed: false });
+    //             //update partner information
+    //             partner.company = company;
+    //             partner.image = company.image;
+    //             partner.phone = company.phone;
+    //             this.props.onPartnerInfoChanged(partner);
+    //         })
+    //         .catch((error) => {
+    //             this.setState({ isCollapsed: false, isLoading: false, hideEnrichmentButton: true });
+    //             this.context.showHttpErrorMessage(error);
+    //         });
+    // };
 
     private getCompanyInsightsSection = () => {
         const company = this.state.company as Company;
@@ -302,13 +302,13 @@ class CompanySection extends React.Component<CompanySectionProps, CompanySection
             return (
                 <div>
                     {this.getCompanyInsightsSection()}
-                    {!this.state.hideEnrichmentButton && this.props.canCreatePartner && (
+                    {/* {!this.state.hideEnrichmentButton && this.props.canCreatePartner && (
                         <div>
                             <div className="odoo-secondary-button insights-button" onClick={this.enrichAndUpdate}>
                                 {_t('Enrich Company')}
                             </div>
                         </div>
-                    )}
+                    )} */}
                 </div>
             );
         } else if (this.props.partner.isAddedToDatabase()) {
