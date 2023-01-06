@@ -1,6 +1,7 @@
 const api = {
     baseURL: localStorage.getItem('baseURL'),
     createLead: '/mail_plugin/lead/create',
+    createPurchase: '/mail_plugin/purchase/create',
     createPartner: '/mail_plugin/partner/create',
     createProject: '/mail_plugin/project/create',
     createTask: '/mail_plugin/task/create',

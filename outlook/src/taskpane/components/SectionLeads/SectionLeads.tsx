@@ -25,7 +25,7 @@ class SectionLeads extends React.Component<LeadSectionProps, SectionLeadsState> 
         this.state = {email_leads: this.props.partner.leads, replyto: null};    
     }
 
-    async componentDidMount() {this.EmailFilter();}
+    // async componentDidMount() {this.EmailFilter();}
          
     async EmailFilter() {
     Office.context.mailbox.item.getAllInternetHeadersAsync((asyncResult) => {
@@ -73,7 +73,7 @@ class SectionLeads extends React.Component<LeadSectionProps, SectionLeadsState> 
         console.log(this.state.replyto);
         console.log(this.state.email_leads);
   
-        if (this.state.replyto === null) {return <p>hello yaasss</p>} 
+        if (this.state.replyto === null) {return <p>No Leads babe</p>} 
         else {
 
         return (
