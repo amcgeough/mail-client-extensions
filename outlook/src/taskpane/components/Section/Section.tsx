@@ -100,7 +100,8 @@ class Section extends React.Component<SectionAbstractProps, SectionAbstractState
             const url = `${api.baseURL}/web#action=${this.props.odooRedirectAction}&id=${recordId}&model=${this.props.model}&view_type=form${cids}`;
             window.open(url);
         });
-    };
+                                                          
+        };
 
     private getSection = () => {
         if (!this.props.partner.isAddedToDatabase()) {
